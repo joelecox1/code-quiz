@@ -52,7 +52,7 @@ function getQuestions() {
 
 function questionClick() {
   if (this.value !== questions[questionIndex].answer) {
-    time -= 15;
+    time -= 10;
 
     if (time <= 0) {
       time = 0;
@@ -60,7 +60,7 @@ function questionClick() {
 
     timerEl.textContent = "Time: " + time;
 
-    rightWrongEl.textContent = "Wrong Answer!";
+    rightWrongEl.textContent = "Wrong!";
   } else {
     rightWrongEl.textContent = "Correct!";
 
@@ -121,7 +121,7 @@ function showScores(highScores) {
 };
 
 function clearScores() {
-  localStorage.removeItem("highscores");
+  localStorage.removeItem("highScores");
   highScoresEl.setAttribute("class", "hide");
 }
 
