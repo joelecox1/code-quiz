@@ -6,7 +6,7 @@ Brief quiz to test one's coding skills
 
 ## Site Preview
 
-![](assets/images/screenshot--app.png)
+![](assets/images/screenshot-app.png)
 
 ### Technologies Used
 
