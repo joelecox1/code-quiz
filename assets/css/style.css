@@ -2,6 +2,72 @@
   display: none;
 }
 
-button {
-  background-color: blueviolet;
+header {
+  display: flex;
+  justify-content: space-between;
+  font-size: x-large;
+  padding: 2vw;
 }
+
+main {
+  display: block;
+  margin: auto;
+  /* justify-content: center;
+  align-items: center;
+  text-align: center; */
+  padding: 200px;
+}
+
+h4 {
+  font-size: 1vw;
+}
+
+.high-score {
+  color: #be44d4;
+}
+
+.high-score:hover {
+  color: indigo;
+}
+
+h1 {
+  font-size: 3vw;
+}
+
+h2 {
+  font-size: 1.8vw;
+}
+
+p {
+  font-size: 1.5vw;
+}
+
+button {
+  color: white;
+  background-color: indigo;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5vw;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: #be44d4;
+}
+
+.choice {
+  display: block;
+  margin: 0.5vw;
+}
+
+.right-wrong {
+  color: gray;
+  font-size: 2vw;
+  font-style: italic;
+}
+
+input {
+  background-color: #cdb3d1;
+  font-size: 1.5vw;
+}
+
