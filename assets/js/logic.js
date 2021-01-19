@@ -16,6 +16,7 @@ var scoreList = document.getElementById("score-list");
 var clearBtn = document.getElementById("clear-score-btn");
 var restartBtn = document.getElementById("restart");
 var viewScoresBtn = document.getElementById("high-score");
+var clickCount = 0;
 
 function startQuiz() {
   startScreen.setAttribute("class", "hide");
@@ -87,32 +88,40 @@ function endQuiz() {
 };
 
 function saveScore() {
-  var initials = initialsEl.value.trim();
-  if (initials !== null) {
-    var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
-    var newScore = {
-      score: time, 
-      initials: initials
+  if (clickCount < 1) {
+    var initials = initialsEl.value.trim();
+
+    if (initials !== null) {
+      var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+      var newScore = {
+        score: time,
+        initials: initials
+      };
+  
+      highScores.push(newScore);
+  
+      localStorage.setItem("highscores", JSON.stringify(highScores));
+      showScores(highScores);
     };
-
-    highScores.push(newScore);
-    
-    localStorage.setItem("highscores", JSON.stringify(highScores));
-
-    showScores(highScores);
-  }
-}
+  } else {
+    highScoresEl.removeAttribute("class");
+    startScreen.setAttribute("class", "hide");
+    endScreen.setAttribute("class", "hide");
+    // scoreList.setAttribute("class", "hide");
+    // scoreList.textContent = "";  
+  };
+};
 
 function showScores(highScores) {
   highScoresEl.removeAttribute("class");
   startScreen.setAttribute("class", "hide");
   endScreen.setAttribute("class", "hide");
 
-  highScores.sort(function(a, b) {
+  highScores.sort(function (a, b) {
     return b.score - a.score;
   });
 
-  highScores.forEach(function(score) {
+  highScores.forEach(function (score) {
     var liEl = document.createElement("li");
 
     liEl.textContent = score.initials + " - " + score.score;
@@ -121,16 +130,21 @@ function showScores(highScores) {
 };
 
 function clearScores() {
-  localStorage.removeItem("highScores");
-  highScoresEl.setAttribute("class", "hide");
-}
+  localStorage.clear();
+  scoreList.setAttribute("class", "hide");
+};
 
 function reload() {
   location.reload();
-}
+};
+
+function checkClicked() {
+  clickCount++;
+  saveScore();
+};
 
 startBtn.onclick = startQuiz;
 saveBtn.onclick = saveScore;
 clearBtn.onclick = clearScores;
 restartBtn.onclick = reload;
-viewScoresBtn.onclick = saveScore;
+viewScoresBtn.onclick = checkClicked;
